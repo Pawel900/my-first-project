@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Input,
@@ -7,14 +7,21 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText
-} from '@material-ui/core';
+} from "@material-ui/core";
+import { getUserListFromCache, saveUserListCache } from "./utils";
 
 function Welcome() {
-  const [inputValue, setInputValue] = React.useState('');
-  const [usernameList, setUsernameList] = React.useState([]);
+  const [inputValue, setInputValue] = React.useState("");
+  const [usernameList, setUsernameList] = React.useState(
+    getUserListFromCache()
+  );
+
+  React.useEffect(() => {
+    saveUserListCache(usernameList);
+  }, [usernameList]);
 
   return (
-    <form>
+    <form onSubmit={e => e.preventDefault()}>
       <Input
         value={inputValue}
         onChange={event => {
@@ -28,11 +35,15 @@ function Welcome() {
         color="primary"
         type="submit"
         onClick={() => {
-          setUsernameList(previousUsernameList => {
-            return [...previousUsernameList, inputValue];
-          });
+          if (usernameList.includes(inputValue)) {
+            alert("The name already exist");
+          } else {
+            setUsernameList(previousUsernameList => {
+              return [...previousUsernameList, inputValue];
+            });
 
-          setInputValue('');
+            setInputValue("");
+          }
         }}
       >
         Dodaj
