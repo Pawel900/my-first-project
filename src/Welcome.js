@@ -62,7 +62,11 @@ function Welcome() {
                   src={`https://eu.ui-avatars.com/api/?name=${username}`}
                 />
               </ListItemAvatar>
-              <ListItemText primary={`Hi ${username}, nice to meet you 🎉`} />
+              <ListItemText
+                primary={`Hi ${username} 👋`}
+                secondary="Nice to meet you 🎉"
+              />
+
               <ListItemSecondaryAction>
                 <IconButton
                   edge="end"
