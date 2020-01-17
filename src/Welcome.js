@@ -6,9 +6,12 @@ import {
   ListItem,
   ListItemAvatar,
   Avatar,
-  ListItemText
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton
 } from "@material-ui/core";
-import { getUserListFromCache, saveUserListCache } from "./utils";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { getUserListFromCache, saveUserListToCache } from "./utils";
 
 function Welcome() {
   const [inputValue, setInputValue] = React.useState("");
@@ -17,17 +20,17 @@ function Welcome() {
   );
 
   React.useEffect(() => {
-    saveUserListCache(usernameList);
+    saveUserListToCache(usernameList);
   }, [usernameList]);
 
   return (
     <form onSubmit={e => e.preventDefault()}>
       <Input
         value={inputValue}
+        placeholder="Wpisz imie i nazwisko"
         onChange={event => {
           setInputValue(event.target.value);
         }}
-        placeholder="Wpisz imie i nazwisko"
       />
 
       <Button
@@ -36,10 +39,10 @@ function Welcome() {
         type="submit"
         onClick={() => {
           if (usernameList.includes(inputValue)) {
-            alert("The name already exist");
+            alert("Sorry, the name already exist ¯\\_(ツ)_/¯");
           } else {
-            setUsernameList(previousUsernameList => {
-              return [...previousUsernameList, inputValue];
+            setUsernameList(previousState => {
+              return [...previousState, inputValue];
             });
 
             setInputValue("");
@@ -60,6 +63,19 @@ function Welcome() {
                 />
               </ListItemAvatar>
               <ListItemText primary={`Hi ${username}, nice to meet you 🎉`} />
+              <ListItemSecondaryAction>
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={() => {
+                    setUsernameList(previousState => {
+                      return previousState.filter(name => name !== username);
+                    });
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           );
         })}
