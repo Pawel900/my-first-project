@@ -4,14 +4,15 @@ import {
   Input,
   List,
   ListItem,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
   ListItemSecondaryAction,
   IconButton
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { getUserListFromCache, saveUserListToCache } from "./utils";
+import "./App.css";
+
+
 
 function Welcome() {
   const [inputValue, setInputValue] = React.useState("");
@@ -24,22 +25,23 @@ function Welcome() {
   }, [usernameList]);
 
   return (
+   
     <form onSubmit={e => e.preventDefault()}>
       <Input
         value={inputValue}
-        placeholder="Wpisz imie i nazwisko"
+        placeholder="Dodaj zadanie"
         onChange={event => {
           setInputValue(event.target.value);
         }}
       />
-
+       	
       <Button
         variant="contained"
         color="primary"
         type="submit"
         onClick={() => {
           if (usernameList.includes(inputValue)) {
-            alert("Sorry, the name already exist ¯\\_(ツ)_/¯");
+            alert("Przepraszamy, zadanie już jest dodane do listy.");
           } else {
             setUsernameList(previousState => {
               return [...previousState, inputValue];
@@ -49,23 +51,18 @@ function Welcome() {
           }
         }}
       >
-        Dodaj
+        
+       Dodaj
       </Button>
+      <h1>Lista zadań:</h1>
 
       <List>
         {usernameList.map(username => {
           return (
             <ListItem alignItems="flex-start" key={username}>
-              <ListItemAvatar>
-                <Avatar
-                  alt={username}
-                  src={`https://eu.ui-avatars.com/api/?name=${username}`}
-                />
-              </ListItemAvatar>
+              
               <ListItemText
-                primary={`Hi ${username} 👋`}
-                secondary="Nice to meet you 🎉"
-              />
+                primary={username}/>
 
               <ListItemSecondaryAction>
                 <IconButton
