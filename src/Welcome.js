@@ -14,6 +14,7 @@ import "./App.css";
 
 
 
+
 function Welcome() {
   const [inputValue, setInputValue] = React.useState("");
   const [usernameList, setUsernameList] = React.useState(
@@ -25,7 +26,7 @@ function Welcome() {
   }, [usernameList]);
 
   return (
-   
+  
     <form onSubmit={e => e.preventDefault()}>
       <Input
         value={inputValue}
@@ -34,7 +35,7 @@ function Welcome() {
           setInputValue(event.target.value);
         }}
       />
-       	
+
       <Button
         variant="contained"
         color="primary"
@@ -51,20 +52,41 @@ function Welcome() {
           }
         }}
       >
-        
+       
        Dodaj
       </Button>
       <h1>Lista zadań:</h1>
-
+       
       <List>
+     
         {usernameList.map(username => {
           return (
+           
             <ListItem alignItems="flex-start" key={username}>
-              
+               <IconButton> <button
+           
+           className='button'
+           
+           ></button>
+         
+        {
+          
+      document.addEventListener('click', function(event)
+          {
+          
+            if (event.target.className === 'button')
+                event.target.classList.toggle('buttonChange');  
+        else if(event.target.className === 'buttonChange')
+          event.target.classList.toggle('button');
+                
+          }, true )}
+          </IconButton>
+          
               <ListItemText
                 primary={username}/>
 
               <ListItemSecondaryAction>
+               
                 <IconButton
                   edge="end"
                   aria-label="delete"
@@ -73,9 +95,9 @@ function Welcome() {
                       return previousState.filter(name => name !== username);
                     });
                   }}
-                >
+                >              
                   <DeleteIcon />
-                </IconButton>
+                </IconButton> 
               </ListItemSecondaryAction>
             </ListItem>
           );

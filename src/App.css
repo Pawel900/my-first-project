@@ -51,7 +51,59 @@ h1 {
   text-align: center;
   font-size: 45px;
 }
-addTime {
+.motywPierwszy {
+ background-color:  rgb(2, 166, 120);
+ min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.motywDrugi {
+  background-color: rgb(red, green, blue);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.button
+{
+  width: 18px;
+  height: 18px;
+  border: 2px solid black;
+  background: white;
+}
+
+.buttonChange
+{
+  background:#008000 !important ;
+  
+}
+.☑ {
+  width: 18px;
+  height: 18px;
+  border: 2px solid black;
+  background: white;
+}
+
+.abc
+{
+  width: 30px;
+  height: 30px;
+  
+  border: 1px solid red;
+  background: white;
+}
+
+.black
+{
+  background: black !important;
+}
