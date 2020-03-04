@@ -63,23 +63,26 @@ function Welcome() {
           return (
            
             <ListItem alignItems="flex-start" key={username}>
-               <IconButton> <button
+               <IconButton> <div
            
            className='button'
            
-           ></button>
+           ></div>
          
         {
           
       document.addEventListener('click', function(event)
+        
           {
+
           
-            if (event.target.className === 'button')
+            if (event.target.className === 'button') 
                 event.target.classList.toggle('buttonChange');  
-        else if(event.target.className === 'buttonChange')
-          event.target.classList.toggle('button');
+        
                 
           }, true )}
+
+
           </IconButton>
           
               <ListItemText

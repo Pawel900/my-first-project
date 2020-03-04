@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div id='abc'></div>
+        
         <a
           className="App-link"
           href="https://reactjs.org"
